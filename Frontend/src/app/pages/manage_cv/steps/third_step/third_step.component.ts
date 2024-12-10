@@ -58,7 +58,7 @@ export class ThirdStepComponent implements OnInit {
   ngOnInit(): void {
     var experiences = this.currentCv?.experiences ?? [];
     this.form = this._formBuilder.group({
-      experiences: this._formBuilder.array(experiences.map(this.newGroup)),
+      experiences: this._formBuilder.array(experiences.map((x)=>this.newGroup(x))),
     });
     if (this.experiences.length == 0) {
       this.addExperience();
@@ -66,12 +66,12 @@ export class ThirdStepComponent implements OnInit {
   }
   loading: boolean = false;
   form: FormGroup;
-
   get experiences() {
     return this.form.get('experiences') as FormArray;
   }
 
   newGroup(info?: ExperienceInformation): FormGroup {
+    console.warn(info);
     return this._formBuilder.group({
       companyName: [
         info?.companyName,
@@ -79,7 +79,7 @@ export class ThirdStepComponent implements OnInit {
       ],
       city: [info?.city],
       companyField: [info?.companyField],
-      id: [info?.id],
+      id: info?.id,
     });
   }
   addExperience() {

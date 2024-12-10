@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "MaterialM": {
+    "CvSystem": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
               "bezier-easing",
               "moment"
             ],
-            "outputPath": "dist/MaterialM",
+            "outputPath": "dist/CvSystem",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -64,11 +64,11 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "MaterialM:build:production",
+              "buildTarget": "CvSystem:build:production",
               "proxyConfig": "proxy.conf.js"
             },
             "development": {
-              "buildTarget": "MaterialM:build:development",
+              "buildTarget": "CvSystem:build:development",
               "proxyConfig": "proxy.conf.js"
             }
           },
@@ -77,7 +77,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "MaterialM:build"
+            "buildTarget": "CvSystem:build"
           }
         },
         "test": {
