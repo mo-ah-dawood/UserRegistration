@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100" color="primary">
+        <input matInput placeholder="Full name" formControlName="fullName" />
+        <mat-error *ngIf="form.get('fullName')?.hasError('required')"> This field is required</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100" color="primary">
+        <input matInput placeholder="City name" formControlName="cityName" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100" color="primary">
+        <input matInput placeholder="Mobile number" formControlName="mobileNumber" />
+        <mat-error *ngIf="form.get('mobileNumber')?.hasError('required')"> This field is required</mat-error>
+        <mat-error *ngIf="form.get('mobileNumber')?.hasError('pattern')"> Must be egyptian phone number</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100" color="primary">
+        <input matInput placeholder="Email address" formControlName="emailAddress" />
+        <mat-error *ngIf="form.get('emailAddress')?.hasError('email')"> Must be a valid email</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div>
+    <button mat-button (click)="back()" type="button">Back</button>
+    <button mat-button type="submit" [disabled]="!form.valid">{{loading? 'Loading...': 'Next'}}</button>
+  </div>
+</form>

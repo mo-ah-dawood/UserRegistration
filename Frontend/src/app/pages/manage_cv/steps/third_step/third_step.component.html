@@ -1,0 +1,54 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <table #editRowTable nzBordered formArrayName="experiences" class="w-100">
+    <thead>
+      <tr>
+        <th>Company name</th>
+        <th>City</th>
+        <th>Company field</th>
+        <th>
+          <button mat-icon-button (click)="addExperience()" type="button">
+            <mat-icon>add</mat-icon>
+          </button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (control of experiences.controls; track control; let i = $index) {
+      <tr [formGroupName]="i">
+        <td>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput placeholder="Company name" formControlName="companyName" />
+            <mat-error *ngIf="form.get('experiences')?.get(i.toString())?.get('companyName')?.hasError('required')">
+              This field is required</mat-error>
+            <mat-error *ngIf="form.get('experiences')?.get(i.toString())?.get('companyName')?.hasError('maxLength')">
+              This field must be 20 characters or
+              less</mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput placeholder="Company field" formControlName="city" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput placeholder="Company field" formControlName="companyField" />
+          </mat-form-field>
+        </td>
+        <td>
+          @if(experiences.length>1){
+          <button mat-icon-button style="margin-bottom: 30px;" type="button" (click)="removeExperience(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          }
+        </td>
+      </tr>
+      }
+
+    </tbody>
+  </table>
+  <div>
+    <button mat-button (click)="back()" type="button">Back</button>
+    <button mat-button type="submit" [disabled]="!form.valid">{{loading? 'Loading...': 'Finish'}}</button>
+  </div>
+</form>
